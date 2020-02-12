@@ -1,8 +1,15 @@
 
 
-<h1><%= @restaurant.name %></h1>
+<h1 class="d-flex justify-content-center"><%= @restaurant.name %></h1>
 
-<p class="well"><%= @restaurant.address %></p>
+<p class="d-flex justify-content-center"><%= @restaurant.address %></p>
+
+<ul class="list-group">
+  <% @restaurant.reviews.each do |review| %>
+    <li class="d-flex justify-content-center"><%= review.content %></li>
+    <li class="d-flex justify-content-center"><%= "#{review.rating}/5"%></li>
+  <% end %>
+</ul>
 
 <hr>
 <%= link_to restaurants_path do %>
@@ -10,10 +17,3 @@
 <% end %>
 
 <%= link_to 'Leave a review', new_restaurant_review_path(@restaurant) %>
-
-<ul class="list-group">
-  <% @restaurant.reviews.each do |review| %>
-    <li class="list-group-item"><%= review.content %></li>
-    <li class="list-group-item"><%= review.rating %></li>
-  <% end %>
-</ul>
